@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >Nano satellite configuration form</title>
+    <link rel="stylesheet" href="sty.css">
+</head>
+<body>              
+
+       
+    
+      
+      
+     <nav class="navbar">
+        <h1>Nano satellite configuration form</h1>
+        <img src="Capture.PNG" alt="Logo" class="logo">
+        <div class="hamburger" onclick="toggleMenu()">
+          &#9776; 
+          
+        </div>
+        <script>
+          function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.classList.toggle("open"); // Toggle the "open" class to show/hide menu
+        }
+        </script>
+      
+        <ul class="nav-links" id="navLinks">
+          <li><a href="https://www.grahaa.space/">Home</a></li>
+          <li><a href="https://www.grahaa.space/about">About</a></li>
+          <li><a href="https://www.grahaa.space/contact">Contact</a></li>
+        </ul>
+      </nav>
+  
+    
+      
+    
+      
+    <div class="container"> 
+        <div class="slider">
+        <div class="slides">
+        
+          <div class="slide">
+            <img src="1.avif" alt="Image 1">
+          </div>
+       
+          <div class="slide">
+            <img src="featured_image.jpg" alt="Image 2">
+          </div>
+                 <div class="slide">
+            <img src="Velox1_Auto5.jpeg" alt="Image 3">
+          </div>
+        </div>
+    
+       
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div> 
+      <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(index) {
+          if (index >= slides.length) {
+            currentSlide = 0; // Loop back to the first slide
+          } else if (index < 0) {
+            currentSlide = slides.length - 1; // Loop to the last slide
+          } else {
+            currentSlide = index;
+          }
+        
+          // Move the slides by setting the transform property
+          const slideWidth = slides[currentSlide].clientWidth;
+          document.querySelector('.slides').style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+        
+        function moveSlide(direction) {
+          showSlide(currentSlide + direction);
+        }
+        
+        // Automatically move to the next slide every 3 seconds
+        function startAutoSlide() {
+          setInterval(() => {
+            moveSlide(1);
+          }, 3000); // 3000ms = 3 seconds
+        }
+        
+       
+        showSlide(currentSlide);
+        
+               startAutoSlide();
+        
+        
+      </script>
+    
+      
+   
+        <div class="form-container">
+            <form id="satelliteForm" action="/generateReport" method = "post" id="payloadForm" >
+            <div class="input-group">
+            <label for="payloadmass">Your payload's mass</label>
+            <br><input type="number" id="payloadmass" name="payloadmass" required>
+    </div><br><br>
+    <div class="input-group">
+            <label for="configuration_id">Your payload's volume envelope</label>
+            <br><select id="configuration_id"name="configuration_id" required>
+                <option value="">
+                    --Select--
+                </option>
+                <option value="1">1U</option>
+                <option value="2">2U</option>
+                <option value="3">3U</option>
+                <option value="4">4U</option>
+                <option value="5">5U</option>
+                <option value="6">6U</option>
+                <option value="7">7U</option>
+                <option value="8">8U</option>
+                <option value="9">9U</option>
+                <option value="10">10U</option>
+                <option value="11">11U</option>
+                <option value="12">12U</option>
+                <option value="morethan12U">More than 12U</option>
+              </select></div><br><br>
+    <div class="input-group">
+            <label for="pointingprecision">Choose pointing precision</label>
+            <br><div class="precision-options">
+                <input type="radio" id="pointingprecision" name="pointingprecision" value="precise" required>
+                <label for="pointingprecision">Precise - 0.1°</label>
+    
+                <input type="radio" id="pointingprecision" name="pointingprecision" value="base" required>
+                <label for="pointingprecision">Base - 4.4°</label>
+            </div></div>
+            <br><br> 
+<div class = 'input-group'>
+  <label for=" propulsion ">Propulsion system</label>
+  <br><select name ="propulsion" id="propulsion" required>
+    <option value = "placeholder" selected disabled>
+      Select</option>
+      <option value ="with propulsion" >
+        With propulsion system
+      </option>
+      <option value="No propulsion">No propulsion system</option>
+  </select>
+</div><br><br>
+<div class="input-group">
+        <label for="comm">Downlink data rate</label>
+        <br><select name="comm" id="comm" required>
+            <option value = "placeholder" selected disabled>
+               Select
+            </option>
+            <option value="High - 80-200Mbps">High - 80-200Mbps</option>
+            <option value="Base - 3Mbps">Base - 3Mbps</option>
+        </select></div><br><br>
+<div class="input-group">
+        <label for="payload_duty">Payload's duty cycle</label>
+        <br><input type="number" id="payload_duty" name="payload_duty" required><br><br></div>
+        <div class="input-group">
+        <label for="payload_pow">Nominal payload power consumption</label>
+        <br><input type="number" id="payload_pow" name="payload_pow" required><br><br>
+</div>
+
+
+
+<button type="submit" id="submitButton" >Access details and full specs</button>
+
+    
+      
+    </form>
+  
+    <scrpit src="app.js" defer></scrpit>
+    
+</body>
+</html>
